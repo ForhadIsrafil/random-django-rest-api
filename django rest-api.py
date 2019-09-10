@@ -62,3 +62,13 @@ def Docs(self):
     return HttpResponse(response)
 # ------------------------------------------------------------
 
+#-------------------------------------------------------------
+fields = [x for x in model._meta.fields if isinstance(x, django.db.models.CharField)]
+search_queries = [Q(**{x.name + "__contains" : search_query}) for x in fields]
+q_object = Q()
+for query in search_queries:
+q_object = q_object | query
+
+results = model.objects.filter(q_object)
+search_results.append(results)
+#-------------------------------------------------------------
