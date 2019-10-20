@@ -72,3 +72,8 @@ q_object = q_object | query
 results = model.objects.filter(q_object)
 search_results.append(results)
 #-------------------------------------------------------------
+
+#----------get the current host or ip address------------
+get_current_site(self.request)
+#--------------------------------------------------------
+
